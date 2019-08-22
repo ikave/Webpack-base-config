@@ -1,15 +1,15 @@
 {
-  "name": "1",
+  "name": "webpack-base-config",
   "version": "1.0.0",
-  "description": "",
+  "description": "Webpack-base-config with support SASS Babel",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dmitry Cherkashin",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
