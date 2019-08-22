@@ -1,11 +1,12 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        publicPath: '/',
+        publicPath: '',
         path: path.resolve(__dirname, 'dist')
     },
     module: {
@@ -41,6 +42,18 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -52,5 +65,11 @@ module.exports = {
         chunkFilename: '[id].css',
         ignoreOrder: false, // Enable to remove warnings about conflicting order
         }),
-    ]
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
+    ],
+    devServer: {
+        port: 9000
+    }
 }
