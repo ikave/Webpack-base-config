@@ -5,6 +5,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
+        publicPath: '/',
         path: path.resolve(__dirname, 'dist')
     },
     module: {
@@ -14,19 +15,31 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test: /\.scss$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
                             // you can specify a publicPath here
                             // by default it uses publicPath in webpackOptions.output
-                            publicPath: '../',
+                            publicPath: './',
                             hmr: process.env.NODE_ENV === 'development',
                         },
                     },
                     'css-loader',
                     'sass-loader'
+                ]
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'images'
+                        }
+                    }
                 ]
             }
         ]
